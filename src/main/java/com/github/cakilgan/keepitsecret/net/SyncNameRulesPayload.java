@@ -1,11 +1,11 @@
-package com.github.ozgurkardesler.keepitsecret.net;
+package com.github.cakilgan.keepitsecret.net;
 
-
-import net.minecraft.network.FriendlyByteBuf;
+import com.github.cakilgan.keepitsecret.other.Reference;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public record SyncNameRulesPayload(
         boolean hideMobs,
@@ -13,7 +13,7 @@ public record SyncNameRulesPayload(
 ) implements CustomPacketPayload {
 
     public static final Type<SyncNameRulesPayload> TYPE =
-            new Type<>(ResourceLocation.fromNamespaceAndPath("keepitsecret", "sync_name_rules"));
+            new Type<>(ResourceLocation.fromNamespaceAndPath(Reference.MOD_ID, "sync_name_rules"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, SyncNameRulesPayload> CODEC =
             StreamCodec.of(
@@ -28,10 +28,7 @@ public record SyncNameRulesPayload(
             );
 
     @Override
-    public Type<? extends CustomPacketPayload> type() {
+    public @NotNull Type<? extends CustomPacketPayload> type() {
         return TYPE;
     }
 }
-
-
-

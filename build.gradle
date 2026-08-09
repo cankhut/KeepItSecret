@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'idea'
-    id 'net.neoforged.moddev' version '2.0.139'
+    id 'net.neoforged.moddev' version '2.0.141'
 }
 
 version = mod_version
@@ -26,8 +26,6 @@ neoForge {
         mappingsVersion = project.parchment_mappings_version
         minecraftVersion = project.parchment_minecraft_version
     }
-
-    addModdingDependenciesTo(sourceSets.main)
 
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers.add('src/main/resources/META-INF/accesstransformer.cfg')
@@ -57,7 +55,7 @@ neoForge {
         }
 
         data {
-            clientData()
+            data()
 
             // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
             // gameDirectory = project.file('run-data')
@@ -166,7 +164,4 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
-}
-tasks.named('processResources') {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

@@ -1,4 +1,4 @@
-package com.github.ozgurkardesler.keepitsecret;
+package com.github.cakilgan.keepitsecret;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 

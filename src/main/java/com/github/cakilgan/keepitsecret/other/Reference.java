@@ -1,4 +1,4 @@
-package com.github.ozgurkardesler.keepitsecret.other;
+package com.github.cakilgan.keepitsecret.other;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

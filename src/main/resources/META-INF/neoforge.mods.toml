@@ -13,7 +13,7 @@ description="Keep it secret and have your nameplates get obscured by blocks!"
 [[dependencies.keepitsecret]]
 modId="neoforge"
 type="required"
-versionRange="[21.10,)"
+versionRange="[21.1,)"
 ordering="NONE"
 side="BOTH"
 
