@@ -49,6 +49,11 @@ public abstract class NameTagRendering_Mixin<T extends Entity> {
     ) {
         //DEBUG
         //System.out.println(entity.getClass().getName());
+        if (entity.isDiscrete()) {
+            keepitsecret$drawBackground(font, text, x, y, matrix, buffers, backgroundColor);
+            return original.call(font, text, x, y, color, shadow, matrix, buffers, mode, 0, light);
+        }
+
         boolean hide = (entity instanceof Mob &&
                 keepitsecret$enabled(ClientRuleCache.HIDE_MOB_NAMES, Config.HIDE_MOB_NAMES.getAsBoolean())) ||
                 (entity instanceof Player &&
@@ -56,9 +61,6 @@ public abstract class NameTagRendering_Mixin<T extends Entity> {
 
         if (hide) {
             keepitsecret$drawBackground(font, text, x, y, matrix, buffers, backgroundColor);
-            if (entity.isDiscrete()) {
-                return original.call(font, text, x, y, color, shadow, matrix, buffers, mode, 0, light);
-            }
             return 0;
         }
 
