@@ -1,6 +1,6 @@
 # <img src="readme_assets/keepitsecreticon.gif" width="40" align="top" alt=""> KeepItSecret
 
-A lightweight server-side mod that helps you "Keep It Secret" by stopping nameplates from showing through blocks. If you or your pet is hiding behind a block, their nameplates will be blocked by the block as well! You can easily configure this by using the gamerule commands if you want this feature enabled for players or mobs. Gamerules are set to false by default so you should turn it on when you get in game.
+A lightweight client-side mod that helps you "Keep It Secret" by stopping nameplates from showing through blocks. If you or your pet is hiding behind a block, their nameplates will be blocked by the block as well! Works for both player and mob nameplates, and you can turn either one on or off whenever you want.
 
 ![Miyabi walking past a tree](https://cdn.modrinth.com/data/G9KoeIJt/images/584ad2384cdeaba8d59576194e8ddfd50dc778c1.gif)
 
@@ -18,22 +18,19 @@ A lightweight server-side mod that helps you "Keep It Secret" by stopping namepl
 
 Drop the .jar into your `mods` folder. It's a client side mod but add it to the server side as well if you want to control it for everyone with gamerules.
 
-Joining a vanilla server should be fine, you just keep whatever your own config says. 
+You can join servers that don't have the mod, and players without the mod can join servers that have it, they just see normal nameplates.
 
 ## Gamerules
 
-Both are on by default. You can turn it off if you want to keep vanilla behaviour:
+When the server has KeepItSecret, these decide for everyone who has the mod. Both are on by default. You can turn them off if you want to keep vanilla behaviour:
 
 ```
 /gamerule keepItSecretPlayers false
 /gamerule keepItSecretMobs false
 ```
 
-## Client config
+## Your own settings
 
-`config/keepitsecret-client.toml` has the same two switches for your own game:
+On servers without KeepItSecret, you decide for yourself. Go to **Esc → Mods → KeepItSecret → Config** and switch player or mob nameplates on or off, it applies right away. Both are on by default.
 
-```toml
-hidePlayerNames = true
-hideMobNames = true
-```
+The same switches are saved in `config/keepitsecret-client.toml`.

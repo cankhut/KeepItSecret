@@ -1,5 +1,5 @@
 {
-  "itemGroup.keepitsecret": "Example Mod Tab",
-  "block.keepitsecret.example_block": "Example Block",
-  "item.keepitsecret.example_item": "Example Item"
+  "keepitsecret.configuration.Keep It Secret Config": "Keep It Secret",
+  "keepitsecret.configuration.hidePlayerNames": "Hide player names behind blocks",
+  "keepitsecret.configuration.hideMobNames": "Hide mob names behind blocks"
 }

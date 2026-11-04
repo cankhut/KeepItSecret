@@ -5,9 +5,11 @@ import com.github.cakilgan.keepitsecret.net.ClientRuleCache;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Font.DisplayMode;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -47,17 +49,45 @@ public abstract class NameTagRendering_Mixin<T extends Entity> {
     ) {
         //DEBUG
         //System.out.println(entity.getClass().getName());
-        if (entity instanceof Mob &&
-                ClientRuleCache.HIDE_MOB_NAMES &&
-                Config.HIDE_MOB_NAMES.getAsBoolean()) {
-            return 0;
-        }
-        if (entity instanceof Player &&
-                ClientRuleCache.HIDE_PLAYER_NAMES &&
-                Config.HIDE_PLAYER_NAMES.getAsBoolean()) {
+        boolean hide = (entity instanceof Mob &&
+                keepitsecret$enabled(ClientRuleCache.HIDE_MOB_NAMES, Config.HIDE_MOB_NAMES.getAsBoolean())) ||
+                (entity instanceof Player &&
+                keepitsecret$enabled(ClientRuleCache.HIDE_PLAYER_NAMES, Config.HIDE_PLAYER_NAMES.getAsBoolean()));
+
+        if (hide) {
+            keepitsecret$drawBackground(font, text, x, y, matrix, buffers, backgroundColor);
+            if (entity.isDiscrete()) {
+                return original.call(font, text, x, y, color, shadow, matrix, buffers, mode, 0, light);
+            }
             return 0;
         }
 
         return original.call(font, text, x, y, color, shadow, matrix, buffers, mode, backgroundColor, light);
+    }
+
+    private static boolean keepitsecret$enabled(boolean serverRule, boolean clientSetting) {
+        return ClientRuleCache.SERVER_RULES ? serverRule : clientSetting;
+    }
+
+    private static void keepitsecret$drawBackground(Font font, Component text, float x, float y, Matrix4f matrix, MultiBufferSource buffers, int backgroundColor) {
+        if (backgroundColor == 0) {
+            return;
+        }
+
+        float a = (backgroundColor >> 24 & 0xFF) / 255.0F;
+        float r = (backgroundColor >> 16 & 0xFF) / 255.0F;
+        float g = (backgroundColor >> 8 & 0xFF) / 255.0F;
+        float b = (backgroundColor & 0xFF) / 255.0F;
+
+        float x0 = x - 1.0F;
+        float x1 = x + font.width(text) + 1.0F;
+        float y0 = y - 1.0F;
+        float y1 = y + 9.0F;
+
+        VertexConsumer consumer = buffers.getBuffer(RenderType.debugStructureQuads());
+        consumer.addVertex(matrix, x0, y1, -0.01F).setColor(r, g, b, a);
+        consumer.addVertex(matrix, x1, y1, -0.01F).setColor(r, g, b, a);
+        consumer.addVertex(matrix, x1, y0, -0.01F).setColor(r, g, b, a);
+        consumer.addVertex(matrix, x0, y0, -0.01F).setColor(r, g, b, a);
     }
 }

@@ -5,7 +5,7 @@ license="MIT"
 
 [[mods]]
 modId="keepitsecret"
-version="1.0.2"
+version="1.0.3"
 displayName="KeepItSecret"
 description="Keep it secret and have your nameplates get obscured by blocks!"
 

@@ -13,11 +13,11 @@ public class Config {
         BUILDER.push("Keep It Secret Config");
 
         HIDE_PLAYER_NAMES = BUILDER
-                .comment("When enabled, player nametags will be hidden behind blocks")
+                .comment("Hide player nametags behind blocks. Used on servers without KeepItSecret, on servers with it the keepItSecretPlayers gamerule decides")
                 .define("hidePlayerNames", true);
 
         HIDE_MOB_NAMES = BUILDER
-                .comment("When enabled, mob nametags will be hidden behind blocks")
+                .comment("Hide mob nametags behind blocks. Used on servers without KeepItSecret, on servers with it the keepItSecretMobs gamerule decides")
                 .define("hideMobNames", true);
 
         BUILDER.pop();
