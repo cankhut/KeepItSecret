@@ -7,6 +7,7 @@ license="MIT"
 modId="keepitsecret"
 version="1.0.3"
 displayName="KeepItSecret"
+authors="Jankat, cakilgan"
 description="Keep it secret and have your nameplates get obscured by blocks!"
 
 
