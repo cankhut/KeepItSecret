@@ -34,3 +34,9 @@ When the server has KeepItSecret, these decide for everyone who has the mod. Bot
 On servers without KeepItSecret, you decide for yourself. Go to **Esc → Mods → KeepItSecret → Config** and switch player or mob nameplates on or off, it applies right away. Both are on by default.
 
 The same switches are saved in `config/keepitsecret-client.toml`.
+
+## Licence
+
+GNU General Public License v3.0. See [LICENSE](LICENSE).
+
+You can use, change and share this mod, but if you share a changed version, you have to publish its source code under the same licence.
